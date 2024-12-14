@@ -417,19 +417,11 @@ class StockAnalyzerGUI:
             st.write(f"Sharpe Ratio: {analysis['risk_metrics']['sharpe_ratio']:.2f}")
             st.write(f"Suggested Position Size: {analysis['risk_metrics']['position_size_suggest']:.2%}")
 
-def _show_ai_analysis(self, analysis):
-    st.header("AI Analysis Prompt")
-    prompt_text = analysis['nlp_prompt']
-    st.text_area("Copy this prompt for AI analysis:", prompt_text, height=400)
-
-    # Add a copy button using HTML and JavaScript
-    # The button calls the clipboard API to copy the prompt text
-    copy_button_html = f"""
-    <button onclick="navigator.clipboard.writeText('{prompt_text.replace("'", "\\'")}')">
-        Copy Prompt
-    </button>
-    """
-    st.markdown(copy_button_html, unsafe_allow_html=True)
+   def _show_ai_analysis(self, analysis):
+        st.header("AI Analysis Prompt")
+        st.text_area("Copy this prompt for AI analysis:",
+                     analysis['nlp_prompt'],
+                     height=400)
 
     def _create_price_chart(self, ticker):
         try:
